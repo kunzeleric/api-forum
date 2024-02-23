@@ -1,6 +1,6 @@
-import { UniqueEntityID } from "../../core/entities/unique-entity-id"
-import { Entity } from "../../core/entities/entity"
-import { Optional } from "../../core/types/optional"
+import { UniqueEntityID } from '@/core/entities/unique-entity-id'
+import { Entity } from '@/core/entities/entity'
+import { Optional } from '@/core/types/optional'
 
 interface AnswerProps {
   authorId: UniqueEntityID
@@ -45,13 +45,18 @@ export class Answer extends Entity<AnswerProps> {
     this.touch()
   }
 
-  static create(props: Optional<AnswerProps, 'createdAt'>, id?: UniqueEntityID) {
-    const answer = new Answer({
-      ...props,
-      createdAt: new Date(),
-    }, id)
+  static create(
+    props: Optional<AnswerProps, 'createdAt'>,
+    id?: UniqueEntityID,
+  ) {
+    const answer = new Answer(
+      {
+        ...props,
+        createdAt: new Date(),
+      },
+      id,
+    )
 
     return answer
   }
-
 }
