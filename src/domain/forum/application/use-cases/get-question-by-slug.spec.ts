@@ -20,9 +20,11 @@ describe('Get Question By Slug', () => {
 
     questionsRepository.create(newQuestion)
 
-    const { question } = await sut.execute({ slug: 'example-question-title' })
+    const result = await sut.execute({ slug: 'example-question-title' })
 
-    expect(question.id).toBeTruthy()
-    expect(question.title).toEqual(newQuestion.title)
+    expect(result.isRight()).toBe(true)
+    expect(result.value).toMatchObject({
+      question: expect.objectContaining({ title: newQuestion.title }),
+    })
   })
 })
